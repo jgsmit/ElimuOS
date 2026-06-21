@@ -1,2 +1,2 @@
 # ElimuOS
-School managemnt system
+School managemnt system 
