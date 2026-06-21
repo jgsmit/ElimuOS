@@ -1,0 +1,8 @@
+Django>=5.2,<6.0
+crispy-bootstrap5>=2025.4
+Django-crispy-forms>=2.3
+django-filter>=25.1
+django-import-export>=4.3
+whitenoise>=6.9
+python-decouple>=3.8
+Pillow>=11.0
