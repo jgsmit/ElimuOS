@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}{{ dashboard_data.title }} | Shule Yangu{% endblock %}
+{% block content %}
+<div class="d-flex align-items-center justify-content-between mb-4">
+  <div>
+    <p class="text-uppercase text-primary fw-semibold small mb-2">Phase 9 reporting dashboard</p>
+    <h1 class="h3 mb-1">{{ dashboard_data.title }}</h1>
+    {% if current_school %}<p class="text-muted mb-0">Tenant-aware analytics for {{ current_school.name }}</p>{% endif %}
+  </div>
+</div>
+
+<div class="row g-3 mb-4">
+  {% for metric in dashboard_data.metrics %}
+    <div class="col-sm-6 col-xl-3">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body">
+          <p class="text-muted small mb-1">{{ metric.label }}</p>
+          <h2 class="h4 mb-1">{{ metric.value }}</h2>
+          {% if metric.hint %}<p class="small text-muted mb-0">{{ metric.hint }}</p>{% endif %}
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <div class="col-12"><div class="alert alert-info">No dashboard metrics are available yet.</div></div>
+  {% endfor %}
+</div>
+
+<div class="row g-3">
+  {% for chart in dashboard_data.charts %}
+    <div class="col-lg-6">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body">
+          <h2 class="h5">{{ chart.label }}</h2>
+          <div class="dashboard-bars">
+            {% for point in chart.points %}
+              <div class="mb-2">
+                <div class="d-flex justify-content-between small"><span>{{ point.label }}</span><span>{{ point.value }}</span></div>
+                <div class="progress" role="progressbar" aria-label="{{ point.label }}">
+                  <div class="progress-bar" style="width: {{ point.value|default:0 }}%"></div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+  <div class="col-lg-6">
+    <div class="card shadow-sm border-0 h-100">
+      <div class="card-body">
+        <h2 class="h5">Summary</h2>
+        <ul class="mb-0">
+          {% for summary in dashboard_data.summaries %}<li>{{ summary }}</li>{% empty %}<li>No summary insights yet.</li>{% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

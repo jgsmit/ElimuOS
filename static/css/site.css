@@ -1,0 +1,9 @@
+body { min-height: 100vh; }
+.navbar-brand { letter-spacing: .02em; }
+
+.shule-navbar { background-color: var(--shule-primary); }
+.btn-primary { background-color: var(--shule-primary); border-color: var(--shule-primary); }
+.tenant-logo { width: 32px; height: 32px; object-fit: contain; border-radius: .25rem; background: #fff; }
+.text-primary { color: var(--shule-primary) !important; }
+.progress-bar { background-color: var(--shule-accent); }
+.dashboard-bars .progress { height: .65rem; }
